@@ -1,0 +1,39 @@
+start
+
+	x = leggo numero input, base;	
+
+	y = leggo numero input, esponente;
+
+	if ( y < 0 ) then
+	
+		stampa impossibile eseguire la potenza con esponente negativo
+
+		end
+
+	end if
+
+	if ( y = 0 )then
+		
+		stampa risultato = 1
+
+		end
+
+	end if
+
+	calcola = y;
+
+	risultato = 1;
+
+	while (calcola > 0 ) do
+
+		risultato = x * risultato
+
+		calcola = calcola - 1;
+
+	end while
+
+	stampa risultato
+
+	
+
+end
