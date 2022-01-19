@@ -16,8 +16,8 @@ public class Main1_7 {
         int x;
         int npari = 0;
         int ndispari = 0;
-        int mediaP;
-        int mediaD;
+        int mediaP = 0;
+        int mediaD = 0;
         int sommaP = 0;
         int sommaD = 0;
         boolean ContinuaCiclo = true;
@@ -36,15 +36,22 @@ public class Main1_7 {
                 ndispari = ndispari + 1;
             }
         }
-        mediaP = sommaP / npari;
-        mediaD = sommaD / ndispari;
+        if (npari>0){
+            mediaP = sommaP / npari;
+        }
+        if (ndispari>0){
+            mediaD = sommaD / ndispari;
+        }
         System.out.println("La media dei numeri pari è: " + mediaP);
         System.out.println("La media dei numeri dispari è: " + mediaD);
-        if(mediaD>mediaP){
-            System.out.println("La media dei numeri dispari è quella maggiore");       
+        if(mediaD==mediaP){
+            System.out.println("La media dei numeri dispari è uguale a quella dei numeri dispari");       
+        }
+        else if(mediaD<mediaP) {
+            System.out.println("La media dei numeri pari è quella maggiore");
         }
         else {
-            System.out.println("La media dei numeri pari è quella maggiore");
-        }       
+            System.out.println("La media dei numeri dispari è quella maggiore");
+        }
     }   
 }
