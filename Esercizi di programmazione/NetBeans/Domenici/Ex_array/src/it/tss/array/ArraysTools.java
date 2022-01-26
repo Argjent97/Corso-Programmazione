@@ -22,7 +22,7 @@ public class ArraysTools {
 
     public static boolean ricerca(int[] numeri, int n) {
         if (numeri == null || numeri.length == 0) {
-            throw new IllegalArgumentException("impossibile calcolare il minimo, array nullo o vuoto");
+            throw new IllegalArgumentException("impossibile procedere, array nullo o vuoto");
         }
         boolean trovato = false;
         int i = 0;
@@ -38,7 +38,7 @@ public class ArraysTools {
 
     public static int max(int[] numeri) {
         if (numeri == null || numeri.length == 0) {
-            throw new IllegalArgumentException("impossibile calcolare il minimo, array nullo o vuoto");
+            throw new IllegalArgumentException("impossibile calcolare il massimo, array nullo o vuoto");
         }
         int massimo = 0;
         for (int i = 0; i < numeri.length; i++) {
@@ -69,7 +69,7 @@ public class ArraysTools {
 
     public static double avg(int[] numeri) {
         if (numeri == null || numeri.length == 0) {
-            throw new IllegalArgumentException("impossibile calcolare il minimo, array nullo o vuoto");
+            throw new IllegalArgumentException("impossibile calcolare la media, array nullo o vuoto");
         }
         double ris = 0;
         for (int i = 0; i < numeri.length; i++) {
@@ -81,8 +81,12 @@ public class ArraysTools {
     }
 
     public static void sort(int[] numeri) {
+        if (numeri == null || numeri.length == 0) {
+        throw new IllegalArgumentException("impossibile procedere, array nullo o vuoto");
+        }
+        boolean ordinato;
         do {
-            boolean ordinato = true;
+            ordinato = true;
             int i = 0;
             while (i < numeri.length - 1) {
                 if (numeri[i] > numeri[i + 1]) {
@@ -93,19 +97,28 @@ public class ArraysTools {
                 }
                 i = i + 1;
             }
-            while (!ordinato)
-        }
+        } while (!ordinato);
     }
 
     /**
-     * ritorna un array contenente la copia di numeri 1 e numeri 2
+     * ritorna un array contenente la copia di numeri 1
      *
      * @param numeri
-     * @param numeri2
      * @return
      */
     public static int[] copia(int[] numeri) {
-        throw new UnsupportedOperationException("Non ancorai implementato");
+        if (numeri == null || numeri.length == 0) {
+        throw new IllegalArgumentException("impossibile creare la copia, array nullo o vuoto");
+        }
+        int i;
+        int j=0;
+        int[]numeri2 = new int[numeri.length];
+        for(i=0; i<numeri.length; i++){
+            numeri2[j] = numeri[i];
+            j++;
+            
+        }
+        return numeri2;
     }
 
     /**
@@ -116,7 +129,26 @@ public class ArraysTools {
      * @return
      */
     public static int[] unisci(int[] numeri, int[] numeri2) {
-        throw new UnsupportedOperationException("Non ancorai implementato");
+        if (numeri == null || numeri2 == null|| numeri.length == 0 || numeri2.length == 0) {
+        throw new IllegalArgumentException("impossibile unire, array nullo o vuoto");
+        }
+        int[] numeri3 = new int[numeri.length+numeri2.length];
+        int i;
+        int j;
+        int k=0;
+        for(i=0;i<numeri.length;i++){
+            numeri3[k]=numeri[i];
+            k++;
+        }
+        for(j=0;j<numeri2.length;j++){
+            numeri3[k]=numeri2[j];
+            k++;
+        }
+        for(k=0;k<numeri3.length;k++){
+            System.out.print(numeri3[k] + ",");
+        }
+        System.out.println("");
+        return numeri3;
     }
 
     /**
@@ -128,7 +160,24 @@ public class ArraysTools {
      * @return
      */
     public static boolean contieneSequenza(int[] numeri, int[] numeri2) {
-        throw new UnsupportedOperationException("Non ancorai implementato");
+        if (numeri == null || numeri.length == 0) {
+        throw new IllegalArgumentException("impossibile procedere, array nullo o vuoto");
+        }
+        int i=0;
+        int j=0;
+        boolean risultato = true;
+        do{
+            if(numeri[i] != numeri2[j]){
+                risultato = false;
+                System.out.println(risultato);
+                return risultato;
+            }
+            i++;
+            j++;
+        
+        }while(i < numeri.length);
+        System.out.println(risultato);
+        return risultato;
     }
 
     /**

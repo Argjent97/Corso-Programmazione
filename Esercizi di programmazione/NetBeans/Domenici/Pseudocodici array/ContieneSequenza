@@ -1,0 +1,20 @@
+//ContieneSequenza
+
+start
+numeri1= leggi input;
+numeri2= leggi input;
+i=0;
+j=0;
+boolean risultato;
+do
+	risultato = true;
+	if(numeri[i] != numeri[j])then
+		risultato = false
+	else
+		i++
+		j++
+	while (risultato);
+	
+end while
+stampa risultato
+return risultato

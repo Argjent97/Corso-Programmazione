@@ -1,0 +1,17 @@
+//UNIONE ARRAY
+
+numeri1= leggi input;
+numeri2= leggi input;
+numeri3= array finale;
+i=0
+j=0
+k=0
+for(i;i<numeri1.length;i++)do
+	numeri3[k]=numeri1[i];
+	k++
+end for
+for(j;j<numeri2.length;j++)do
+	numeri3[k]=numeri2[j];
+	k++
+end for
+return numeri3

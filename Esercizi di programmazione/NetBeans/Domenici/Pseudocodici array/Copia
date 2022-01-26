@@ -1,0 +1,12 @@
+//UNIONE ARRAY
+
+numeri1= leggi input;
+numeri2= array finale;
+i=0;
+j=0;
+for(i;i<numeri1.length;i++)do
+	numeri2[j]=numeri[i];
+	j++;
+end for
+
+return numeri2
