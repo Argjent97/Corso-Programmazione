@@ -185,8 +185,8 @@ public class Tool {
         for (int i = 0; i < dim1; i++) {
             arok[i] = ar1[i];
         }
-        for (int i = 0; i < dim1; i++) {
-            arok[i + dim1] = ar1[i];
+        for (int i = 0; i < dim2; i++) {
+            arok[i + dim2] = ar2[i];
         }
         return arok;
     }

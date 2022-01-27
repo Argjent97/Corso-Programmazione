@@ -66,8 +66,8 @@ public class ProgDist3D {
    arOK=Tool.concatenaArrays(ar1,ar2);
    System.out.println("primo elemento " + ar1[0]);
    
-   int[] file = {123,234,354,456,354,234,123,234};
-   file= Tool.concatenaArrays(ar1, file);
+   int[] file1 = {123,234,354,456,354,234,123,234};
+   int[] file= Tool.concatenaArrays(ar1, file1);
    int[] virus = {354,234,123};
    int posvirus = Tool.cercaVirus(file, virus);
   }
