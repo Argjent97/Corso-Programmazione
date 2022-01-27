@@ -140,8 +140,9 @@ public class ArraysTools {
             numeri3[k]=numeri[i];
             k++;
         }
+        k=0;
         for(j=0;j<numeri2.length;j++){
-            numeri3[k]=numeri2[j];
+            numeri3[k+numeri.length]=numeri2[j];
             k++;
         }
         for(k=0;k<numeri3.length;k++){

@@ -12,11 +12,11 @@ import java.util.Random;
  */
 public class MainRicerca {
     public static void main(String[] args) {
-        int[] input = generaArrayCasuale(3,1);
-        int[] input2 = generaArrayCasuale(4,1);
+        int[] input = generaArrayCasuale(5,10);
+        int[] input2 = generaArrayCasuale(3,20);
         ArraysTools.stampa(input);
         ArraysTools.stampa(input2);
-        /*
+        
         ArraysTools.avg(input);
         ArraysTools.ricerca(input, 7);
         ArraysTools.max(input);
@@ -25,8 +25,9 @@ public class MainRicerca {
         ArraysTools.stampa(input);
         ArraysTools.sort(input);
         ArraysTools.stampa(input);
+        
         ArraysTools.unisci(input, input2);
-        */
+        
         ArraysTools.contieneSequenza(input, input2);
         
         
