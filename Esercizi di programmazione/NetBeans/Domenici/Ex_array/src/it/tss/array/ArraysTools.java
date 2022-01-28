@@ -35,6 +35,34 @@ public class ArraysTools {
         System.out.println(trovato);
         return trovato;
     }
+    
+    
+    /**
+     * ritorna l'indice dell'elemento trovato altrimenti -1
+     * 
+     * @param numeri
+     * @param n
+     * @return 
+     */
+    public static int indexOf(int[] numeri, int n){
+        return indexOf(0, numeri, n);
+    }
+    
+    /**
+     * ritorna l'indice dell'elemento trovato altrimenti -1
+     * 
+     * @param numeri
+     * @param n
+     * @return 
+     */
+    public static int indexOf(int start, int[] numeri, int n){
+        for (int idx = start; idx < numeri.length; idx++){
+            if (numeri[idx] == n){
+                return idx;
+            }
+        }
+        return -1;
+    }
 
     public static int max(int[] numeri) {
         if (numeri == null || numeri.length == 0) {
@@ -164,22 +192,28 @@ public class ArraysTools {
         if (numeri == null || numeri.length == 0) {
         throw new IllegalArgumentException("impossibile procedere, array nullo o vuoto");
         }
-        int i=0;
-        int j=0;
-        boolean risultato = true;
-        do{
-            if(numeri[i] != numeri2[j]){
-                risultato = false;
-                System.out.println(risultato);
-                return risultato;
+        if(numeri2.length == 0){
+            return false;
+        }
+        if(numeri2.length>numeri.length){
+            return false;
+        }
+        boolean ris = false;
+        int n = numeri2[0];
+        int start = indexOf(numeri,n);
+        while(start!= -1 && numeri.length >= start + numeri2.length && !ris){
+            ris = true;
+            for(int i= 0;i<numeri2.length;i++){
+                if(numeri[start+i]!= numeri[i]){
+                    ris = false;
+                    break;
+                }
             }
-            i++;
-            j++;
-        
-        }while(i < numeri.length);
-        System.out.println(risultato);
-        return risultato;
+            start = indexOf(start + 1, numeri, n);
+        }
+        return ris;
     }
+    
 
     /**
      * ritorna true se numeri1 contiene tutti i valori di numeri 2 in qualunque
@@ -190,7 +224,15 @@ public class ArraysTools {
      * @return
      */
     public static boolean contieneValori(int[] numeri, int[] numeri2) {
-        throw new UnsupportedOperationException("Non ancorai implementato");
+        boolean ris = true;
+        
+        for (int n : numeri2){
+            if(ricerca(numeri,n) == false){
+                ris = false;
+                break;
+            }
+        }
+        return ris;
     }
 
     /**
@@ -200,7 +242,7 @@ public class ArraysTools {
      * @param numeri2
      * @return
      */
-    public static boolean intersezione(int[] numeri, int[] numeri2) {
+    public static int[] intersezione(int[] numeri, int[] numeri2) {
         throw new UnsupportedOperationException("Non ancorai implementato");
     }
 
