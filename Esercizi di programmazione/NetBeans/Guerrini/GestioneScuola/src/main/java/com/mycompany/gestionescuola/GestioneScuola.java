@@ -26,8 +26,10 @@ public class GestioneScuola {
         Alunno a2 = new Alunno("Krasniqi", "Argjent", oktel, "krasniqi@gmail.com");
         a1.stampaInfo();
         a2.stampaInfo();
-        c1.insertAlunno(a2, 0);
         c1.insertAlunno(a1);
+        c1.insertAlunno(a2);
+        c1.stampaRegistro();
+        
     }
 
 }

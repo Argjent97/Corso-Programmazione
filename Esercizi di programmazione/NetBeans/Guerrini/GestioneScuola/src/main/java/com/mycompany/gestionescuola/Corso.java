@@ -64,6 +64,16 @@ public class Corso {
 
     }
 
+    void stampaRegistro() {
+        for (int i = 0; i < registro.length; i++) {
+            if (registro[i] == null) {
+                break;
+            } else {
+                registro[i].stampaInfo();
+            }
+        }
+    }
+
     // area metodi o capacità, abilità
     void stampaInfo() {
         System.out.println("\n\n-------Scheda corso-------");
