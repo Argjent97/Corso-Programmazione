@@ -1,0 +1,66 @@
+start
+	dato in ingresso il punteggio a cui si vuole arrivare si gioca finchè uno dei giocatori arriva a quel punteggio
+
+	punteggio = leggi input;
+
+	PPlayer1 = 0;
+
+	PPlayer2 = 0;
+
+	while(PPplayer1!=punteggio && PPplayer2!=punteggio)do
+
+	ndad1 = numero casuale tra 1 e 6	
+	ndad2 = numero casuale tra 1 e 6
+
+
+		if(ndad1>ndad2)then
+			PPplayer1 = PPplayer1 + 1
+			stampa mano vinta da p1
+		end if
+		else if(ndad2>ndad1)
+			PPplayer2 = PPplayer2 + 1
+			stampa mano vinta da p2
+		else
+			stampa mano patta
+		end if
+		
+
+	end while
+	if(PPplayer1>PPplayer2)then
+		stampa "PLayer1 ha vinto"
+	end if
+	else
+		stampa "Player2 ha vinto"
+	end else		
+
+end
+
+
+
+start
+	dato in ingresso i soldi di un giocatore e il banco 
+
+	soldi = input
+
+	contaMano = 1
+
+	while(soldi > 0) do
+		
+		ndadb = numero casuale tra 1 e 6	
+		ndadp = numero casuale tra 1 e 6
+
+
+		if(ndadb>ndadp || ndadb == ndadp)then
+			soldi--
+			stampa mano vinta da banco
+		end if
+		else
+			soldi++
+			stampa mano vinta da Player
+			
+		end if	
+		contaMano++	
+
+	end while	
+
+end
