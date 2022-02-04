@@ -4,6 +4,7 @@
  */
 package it.tss.oo_dado;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Random;
 public class Dado {
     private final int numeroFacce; // final significa che quando andrò a dare il valore di numeroFacce quello rimarrà invariato.
     private int ultimoLancio;
+    private ArrayList<Integer> storia = new ArrayList<>();
 
     public Dado(int nFacce) {
         this.numeroFacce = nFacce;
@@ -21,6 +23,7 @@ public class Dado {
     public void lancia(){
         Random rnd = new Random();
         ultimoLancio = rnd.nextInt(numeroFacce - 1)+1;
+        storia.add(ultimoLancio);
     }
 
     public int getNumeroFacce() {
@@ -30,6 +33,10 @@ public class Dado {
     public int getUltimoLancio() {
         return ultimoLancio;
     }
+    
+    public ArrayList<Integer> getStoria(){
+        return new ArrayList<>(storia); //creo una copia dell'array storia poichè ritornando solo this.storia
+    }                                   //il valore di storia, anche se privato, potrebbe essere modificato esternamente
     
     
     

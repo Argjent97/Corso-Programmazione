@@ -96,9 +96,9 @@ public class Corso {
     public boolean setDatainizio(String datainizio) {
         try{
         int y,m,d;
-        String parts[] = datainizio.split("-");
-        y = Integer.parseInt(parts[0]);
-        m = Integer.parseInt(parts[1]);
+        String parts[] = datainizio.split("-"); //data uno String in input, divide le sue parti
+        y = Integer.parseInt(parts[0]);         //a seconda di dove è inserito il "-" e le inserisce
+        m = Integer.parseInt(parts[1]);         //in un array
         d = Integer.parseInt(parts[2]);
         LocalDate data = LocalDate.of(y,m,d);
         this.datainizio = data;
