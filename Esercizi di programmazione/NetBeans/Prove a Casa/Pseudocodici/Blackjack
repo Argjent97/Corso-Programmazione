@@ -1,0 +1,34 @@
+Blackjack:
+1) Componenti del gioco:
+	- Giocatore:
+		- soldi;
+	- Carte:
+		- 52 carte
+		- valore da 1 a 13
+		- 4 semi (cuori, picche, quadri e fiori)
+
+-Condizioni per vincere del giocatore:
+	- totale del valore delle carte maggiore del totale del banco
+	- totale del valore delle carte uguale a 21
+
+start
+Dealer
+Giocatore
+carta Dealer
+carta Giocatore
+somma carte giocatore
+somma carte dealer
+
+chiama carta Dealer;
+somma carte Dealer += carta Dealer
+for(int i=0;i<2;i++){
+	chiama carta giocatore
+	somma carte giocatore += carta Giocatore
+
+
+
+end
+
+
+
+
