@@ -53,13 +53,13 @@ public class BlackJack {
             stampaValoriG(valoriG);
             System.out.println("---------------------------");
             if((valoriD>valoriG && valoriD<=21)||valoriG>21){
-                System.out.println("\nHai perso :(");
+                System.out.println("\n Hai perso :(");
                 g.decrementaSoldi();
             }else if((valoriD<valoriG && valoriG<=21)||valoriD>21){
-                System.out.println("\nHAI VINTO!!!");
+                System.out.println("\n HAI VINTO!!!");
                 g.incrementaSoldi();
             }else if(valoriD==valoriG){
-                System.out.println("\nPareggio.");
+                System.out.println("\n Pareggio.");
             }
             stampaSoldi(g.getsoldi());
             valoriD = 0;

@@ -36,8 +36,8 @@ public class Corso {
         this.descrizione = "---";
         datainizio = LocalDate.now();
     }
-    
-        public Corso(String nomecorso, int durataore, int y, int m, int d) {
+
+    public Corso(String nomecorso, int durataore, int y, int m, int d) {
         this.nomecorso = nomecorso;
         this.durataore = durataore;
         this.descrizione = "---";
@@ -92,38 +92,35 @@ public class Corso {
      *
      * @param datainizio formato YYYY-MM-DD 2022-02-03
      */
-
     public boolean setDatainizio(String datainizio) {
-        try{
-        int y,m,d;
-        String parts[] = datainizio.split("-"); //data uno String in input, divide le sue parti
-        y = Integer.parseInt(parts[0]);         //a seconda di dove è inserito il "-" e le inserisce
-        m = Integer.parseInt(parts[1]);         //in un array
-        d = Integer.parseInt(parts[2]);
-        LocalDate data = LocalDate.of(y,m,d);
-        this.datainizio = data;
-        return true;
-        }
-        catch(Exception e){
+        try {
+            int y, m, d;
+            String parts[] = datainizio.split("-"); //data uno String in input, divide le sue parti
+            y = Integer.parseInt(parts[0]);         //a seconda di dove è inserito il "-" e le inserisce
+            m = Integer.parseInt(parts[1]);         //in un array
+            d = Integer.parseInt(parts[2]);
+            LocalDate data = LocalDate.of(y, m, d);
+            this.datainizio = data;
+            return true;
+        } catch (Exception e) {
             return false;
         }
     }
-    
+
     /**
      * imposta la data inizio dai 3 parametri numerici
+     *
      * @param y int anno
      * @param m int mese
      * @param d int giorno
-     * @return 
+     * @return
      */
-  
     public boolean setDatainizio(int y, int m, int d) {
-        try{
-        LocalDate data = LocalDate.of(y,m,d);
-        this.datainizio = data;
-        return true;
-        }
-        catch(Exception e){
+        try {
+            LocalDate data = LocalDate.of(y, m, d);
+            this.datainizio = data;
+            return true;
+        } catch (Exception e) {
             return false;
         }
     }
@@ -183,6 +180,29 @@ public class Corso {
         System.out.println("Data inizio del corso: " + datainizio.toString());
         System.out.println("Link del corso: " + link);
         System.out.println("--------------------------\n\n");
+    }
+
+    String getInfo() {
+        String ris = "";
+        ris += "-------Scheda corso-------";
+        ris += "\nNome del corso: " + nomecorso;
+        ris += "\nDurata del corso: " + durataore;
+        ris += "\nDescrizione del corso: " + descrizione;
+        ris += "\nData inizio del corso: " + datainizio.toString();
+        ris += "\nLink del corso: " + link + "\n";
+        return ris;
+    }
+    /**
+     * ritorna un csv con i corsi
+     * testo nomeccorso; durata; descrizione; datainizio; link
+     * elenco dati separati da ; e fine linea
+     * @return 
+     */
+    String getCSVInfo() { //
+        String ris = "";
+        //ris += "nomeccorso; durata; descrizione; datainizio; link\n";
+        ris +=  nomecorso + ";" + durataore + ";" + descrizione + ";" + datainizio.toString() + ";" + link + "\n";
+        return ris;
     }
 
 }
