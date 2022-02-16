@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class WinGestione extends javax.swing.JFrame {
 
     static ArrayList<Corso> listacorsi = new ArrayList<>();
+    static ArrayList<Anagrafica> listaAnagrafiche = new ArrayList<>();
     int idcorso = -1;
 
     /**
@@ -22,8 +23,11 @@ public class WinGestione extends javax.swing.JFrame {
      */
     public WinGestione() {
         initComponents();
+        this.setLocationRelativeTo(null);
         caricaDatiCorsi();
         showCorsi();
+        caricaDatiAnagrafica();
+
     }
 
     /**
@@ -39,6 +43,7 @@ public class WinGestione extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tpDisplay = new javax.swing.JTextPane();
         btnGestioneCorso = new javax.swing.JButton();
+        btnGestAnagrafica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,20 +60,28 @@ public class WinGestione extends javax.swing.JFrame {
             }
         });
 
+        btnGestAnagrafica.setText("Anagrafica");
+        btnGestAnagrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestAnagraficaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitolo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(btnGestioneCorso, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(140, 140, 140)))
+                .addComponent(lblTitolo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnGestioneCorso, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(btnGestAnagrafica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +91,10 @@ public class WinGestione extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGestioneCorso))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGestioneCorso, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnGestAnagrafica, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(149, Short.MAX_VALUE))
         );
 
@@ -87,9 +103,15 @@ public class WinGestione extends javax.swing.JFrame {
 
     private void btnGestioneCorsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestioneCorsoActionPerformed
         // TODO add your handling code here:
-        new WinGestioneCorso().setVisible(true);
-        
+        new WinDialogCorso(this, true).setVisible(true);
+
     }//GEN-LAST:event_btnGestioneCorsoActionPerformed
+
+    private void btnGestAnagraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestAnagraficaActionPerformed
+        // TODO add your handling code here:
+        // apertua finestra dialogo per caricamento e gestione anagrafica
+        new WinDialogAnagrafica(this, true).setVisible(true);
+    }//GEN-LAST:event_btnGestAnagraficaActionPerformed
     /**
      * aggiorna lista corsi in display
      */
@@ -106,10 +128,6 @@ public class WinGestione extends javax.swing.JFrame {
         }
         tpDisplay.setText(testoDisplay);
     }
-
-
-
-    
 
     private void caricaDatiCorsi() {
         try {
@@ -145,6 +163,44 @@ public class WinGestione extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
+    }
+
+    private void caricaDatiAnagrafica() {
+        try {
+            //aprire il file /tss/Scuola/dati.csv
+            File filecsv = new File("/home/tss/Scuola/anagrafica.csv");
+            //creo scanner per leggere una riga per volta
+            Scanner lettore = new Scanner(filecsv);
+            //estrarre una riga per volta
+            boolean primariga = true;
+            while (lettore.hasNextLine()) {
+                String riga = lettore.nextLine();
+                if (!primariga) {
+                    String[] dati = riga.split(";");
+                    //dati[0] nomecorso dati[1] durata etc...
+                    String cognome = dati[1];
+                    int id = Integer.parseInt(dati[0]);
+                    String nome = dati[2];
+                    String mail = dati[3];
+                    Anagrafica a = new Anagrafica(id, cognome, nome, mail);
+                    listaAnagrafiche.add(a);
+                }
+                primariga = false;
+            }
+            //righe del file
+            //alla fine chiudo il file se no si blocca
+        } catch (Exception e) {
+
+        }
+    }
+
+    public static int getNewIdAnagrafica() {
+        int newId = 1;
+        if (listaAnagrafiche.size() > 0) {
+            newId = listaAnagrafiche.get(listaAnagrafiche.size() - 1).getId_anagrafica() + 1;
+        }
+
+        return newId;
     }
 
     /**
@@ -183,6 +239,7 @@ public class WinGestione extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGestAnagrafica;
     private javax.swing.JButton btnGestioneCorso;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTitolo;

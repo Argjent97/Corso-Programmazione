@@ -306,6 +306,7 @@ public class WinGestioneCorso extends javax.swing.JFrame {
         spDurata.setValue(c.getDurataore());
         btnCreaCorso.setEnabled(validaCorso());
     }//GEN-LAST:event_lstCorsiValueChanged
+   
     private boolean validaCorso() {
         boolean ret = false;
         int val = (int) spDurata.getValue();
@@ -362,6 +363,15 @@ public class WinGestioneCorso extends javax.swing.JFrame {
         } catch (Exception e) {
             lblMsg.setText("Errore di scrittura file corsi.csv");
         }
+    }
+
+    private void refreshLista() {
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < WinGestione.listacorsi.size(); i++) {
+            String nc = WinGestione.listacorsi.get(i).getNomecorso();
+            model.addElement(nc);
+        }
+        lstCorsi.setModel(model);
     }
 
     /**
@@ -421,12 +431,4 @@ public class WinGestioneCorso extends javax.swing.JFrame {
     private javax.swing.JTextField txNomeCorso;
     // End of variables declaration//GEN-END:variables
 
-    private void refreshLista() {
-        DefaultListModel model = new DefaultListModel();
-        for (int i = 0; i < WinGestione.listacorsi.size(); i++) {
-            String nc = WinGestione.listacorsi.get(i).getNomecorso();
-            model.addElement(nc);
-        }
-        lstCorsi.setModel(model);
-    }
 }
