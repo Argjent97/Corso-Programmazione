@@ -24,9 +24,9 @@ public class WinGestione extends javax.swing.JFrame {
     public WinGestione() {
         initComponents();
         this.setLocationRelativeTo(null);
+        caricaDatiAnagrafica();
         caricaDatiCorsi();
         showCorsi();
-        caricaDatiAnagrafica();
 
     }
 
@@ -46,6 +46,11 @@ public class WinGestione extends javax.swing.JFrame {
         btnGestAnagrafica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         lblTitolo.setFont(new java.awt.Font("Cantarell", 1, 24)); // NOI18N
         lblTitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -112,6 +117,11 @@ public class WinGestione extends javax.swing.JFrame {
         // apertua finestra dialogo per caricamento e gestione anagrafica
         new WinDialogAnagrafica(this, true).setVisible(true);
     }//GEN-LAST:event_btnGestAnagraficaActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        showCorsi();
+    }//GEN-LAST:event_formWindowActivated
     /**
      * aggiorna lista corsi in display
      */
@@ -149,8 +159,21 @@ public class WinGestione extends javax.swing.JFrame {
                     int y = Integer.parseInt(data[0]);
                     int m = Integer.parseInt(data[1]);
                     int d = Integer.parseInt(data[2]);
-                    String link = dati[4];
+                    String link = "";
+                    if (dati.length >= 5) {
+                        link = dati[4];
+                    }
                     Corso c = new Corso(nc, durata, y, m, d);
+                    if (dati.length >= 6) {
+                        String registro = dati[5]; // "1,4,7"
+                        String[] regID = registro.split(",");// array["1","4","7"]
+                        for (String sid : regID) {
+                            //indice anagrafica
+                            int id = Integer.parseInt(sid); // id = 1 id = 4 id =7
+                            Anagrafica al = getAlunnoById(id);
+                            c.insertAlunno(al);
+                        }
+                    }
                     c.setDescrizione(des);
                     c.setLink(link);
                     // il corso è pronto e lo aggiungiamo alla lista
@@ -245,4 +268,13 @@ public class WinGestione extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitolo;
     private javax.swing.JTextPane tpDisplay;
     // End of variables declaration//GEN-END:variables
+
+    public static Anagrafica getAlunnoById(int id) {
+        for (Anagrafica a : listaAnagrafiche) {
+            if (id == a.getId_anagrafica()) {
+                return a;
+            }
+        }
+        return null;
+    }
 }
