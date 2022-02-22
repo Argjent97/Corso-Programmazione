@@ -5,8 +5,11 @@
 package com.mycompany.gestionescuola;
 
 import java.io.File;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -44,6 +47,8 @@ public class WinGestione extends javax.swing.JFrame {
         tpDisplay = new javax.swing.JTextPane();
         btnGestioneCorso = new javax.swing.JButton();
         btnGestAnagrafica = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCorsi = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -72,6 +77,39 @@ public class WinGestione extends javax.swing.JFrame {
             }
         });
 
+        tblCorsi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nome Corso", "Durata ore", "Data inizio", "N. Iscritti"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblCorsi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCorsiMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCorsi);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,14 +117,17 @@ public class WinGestione extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblTitolo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnGestioneCorso, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(btnGestAnagrafica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(80, 80, 80))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGestAnagrafica, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addComponent(btnGestioneCorso, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,13 +135,15 @@ public class WinGestione extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(lblTitolo)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGestioneCorso, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGestioneCorso, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGestAnagrafica, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnGestAnagrafica, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(149, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,7 +164,35 @@ public class WinGestione extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         showCorsi();
+        refreshTable();
     }//GEN-LAST:event_formWindowActivated
+
+    private void tblCorsiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCorsiMouseClicked
+        // TODO add your handling code here:
+        int index = tblCorsi.getSelectedRow();
+        JOptionPane.showMessageDialog(null, listacorsi.get(index).getInfo());
+        
+    }//GEN-LAST:event_tblCorsiMouseClicked
+
+    private void refreshTable() {
+        // recuperare la struttura dati della mia tabella come model
+        DefaultTableModel model = (DefaultTableModel) tblCorsi.getModel();
+        //pulire la tabella dai dati precedenti settando la dimensione row a 0
+        model.setRowCount(0);
+        int ncol = model.getColumnCount();
+        Object[] rowData = new Object[ncol];
+        for (Corso c : listacorsi) {
+            //assegno ai 3 elementi dell'array il contenuto equivalente di colona
+            rowData[0] = c.getNomecorso();
+            rowData[1] = c.getDurataore();
+            DateTimeFormatter ddmmaa = DateTimeFormatter.ofPattern("dd/MM/yy");
+            rowData[2] = c.getDatainizio().format(ddmmaa);
+            rowData[3] = c.getRegistro().size();
+            model.addRow(rowData);
+        }
+
+    }
+
     /**
      * aggiorna lista corsi in display
      */
@@ -264,8 +335,10 @@ public class WinGestione extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGestAnagrafica;
     private javax.swing.JButton btnGestioneCorso;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTitolo;
+    private javax.swing.JTable tblCorsi;
     private javax.swing.JTextPane tpDisplay;
     // End of variables declaration//GEN-END:variables
 
