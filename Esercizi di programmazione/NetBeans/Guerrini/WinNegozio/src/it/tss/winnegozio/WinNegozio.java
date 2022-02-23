@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 public class WinNegozio extends javax.swing.JFrame {
 
     static ArrayList<Prodotto> listaprodotti = new ArrayList<>();
+    static ArrayList<Vendita> listavendite = new ArrayList<>();
+    static int index;
 
     /**
      * Creates new form WinNegozio
@@ -43,6 +45,11 @@ public class WinNegozio extends javax.swing.JFrame {
         btnGestioneProd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         lblTitolo.setFont(new java.awt.Font("Cantarell", 1, 24)); // NOI18N
         lblTitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -133,9 +140,17 @@ public class WinNegozio extends javax.swing.JFrame {
 
     private void tblProdottiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdottiMouseClicked
         // TODO add your handling code here:
-        int index = tblProdotti.getSelectedRow();
+        
+        if(evt.getClickCount()== 2){
+        index = tblProdotti.getSelectedRow();
         new WinDialogSells(this, true).setVisible(true);
+        }
     }//GEN-LAST:event_tblProdottiMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        refreshTable();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -199,7 +214,7 @@ public class WinNegozio extends javax.swing.JFrame {
     private void caricaProdotti() {
         try {
             //aprire il file /tss/Scuola/dati.csv
-            File filecsv = new File("/home/tss/Negozio/prodotti.csv");
+            File filecsv = new File("/home/eigji/Negozio/prodotti.csv");
             //creo scanner per leggere una riga per volta
             Scanner lettore = new Scanner(filecsv);
             //estrarre una riga per volta

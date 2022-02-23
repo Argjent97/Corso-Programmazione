@@ -5,7 +5,6 @@
 package it.tss.winnegozio;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -13,22 +12,20 @@ import java.time.format.DateTimeFormatter;
  */
 public class Vendita {
 
-    private final int idvendita;
     private int qntV;
+    private final float IVA = 22;
     private float prezzoivato;
     private LocalDate data;
     private float ricavo;
 
-    public Vendita(int idscontrino, int venduti, float prezzoivato, LocalDate data, float ricavo) {
-        this.idvendita = idscontrino;
+    public Vendita() {
+    }
+    
+    public Vendita(int venduti, float prezzoivato, LocalDate data, float ricavo) {
         this.qntV = venduti;
         this.prezzoivato = prezzoivato;
         this.data = data;
         this.ricavo = ricavo;
-    }
-
-    public int getIdvendita() {
-        return idvendita;
     }
 
     public int getQntV() {
@@ -59,8 +56,9 @@ public class Vendita {
         return prezzoivato;
     }
 
-    public void setPrezzoivato(float prezzoivato) {
-        this.prezzoivato = prezzoivato;
+    public void setPrezzoivato(float prezzo) {
+        float valoreiva = (prezzo/100)*IVA;
+        this.prezzoivato = prezzo + valoreiva;
     }
 
     

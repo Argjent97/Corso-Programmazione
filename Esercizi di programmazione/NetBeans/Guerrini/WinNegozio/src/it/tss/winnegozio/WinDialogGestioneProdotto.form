@@ -40,29 +40,19 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="txNomeprod" min="-2" pref="179" max="-2" attributes="0"/>
-                              <EmptySpace pref="36" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="txIDprod" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="txNomeprod" min="-2" pref="179" max="-2" attributes="0"/>
+                          <Component id="txIDprod" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="txPrezzoprod" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblMsg" min="-2" pref="262" max="-2" attributes="0"/>
-                          <Component id="btnConfirm" min="-2" pref="262" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txPrezzoprod" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="lblMsg" min="-2" pref="262" max="-2" attributes="0"/>
+                  <Component id="btnConfirm" min="-2" pref="262" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -180,6 +170,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Chiudi"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCloseActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMsg">
     </Component>
