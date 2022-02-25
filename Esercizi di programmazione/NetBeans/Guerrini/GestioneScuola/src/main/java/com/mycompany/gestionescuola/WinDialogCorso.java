@@ -390,7 +390,7 @@ public class WinDialogCorso extends javax.swing.JDialog {
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
-                int index = lstCorsi.getSelectedIndex();
+        int index = lstCorsi.getSelectedIndex();
         if (index == -1) { //niente di selezionato
             return;
         }

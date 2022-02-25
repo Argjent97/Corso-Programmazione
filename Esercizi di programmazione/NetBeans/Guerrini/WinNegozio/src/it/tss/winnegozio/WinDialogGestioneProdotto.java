@@ -281,7 +281,7 @@ public class WinDialogGestioneProdotto extends javax.swing.JDialog {
         }
         String txfile = intestazione + dati;
         try{
-            FileWriter myWriter = new FileWriter("/home/eigji/Negozio/prodotti.csv");
+            FileWriter myWriter = new FileWriter("/home/tss/Negozio/prodotti.csv");
             myWriter.write(txfile);
             myWriter.close();
         } catch (Exception e) {

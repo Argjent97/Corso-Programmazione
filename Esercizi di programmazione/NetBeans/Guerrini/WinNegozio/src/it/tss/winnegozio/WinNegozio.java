@@ -214,7 +214,7 @@ public class WinNegozio extends javax.swing.JFrame {
     private void caricaProdotti() {
         try {
             //aprire il file /tss/Scuola/dati.csv
-            File filecsv = new File("/home/eigji/Negozio/prodotti.csv");
+            File filecsv = new File("/home/tss/Negozio/prodotti.csv");
             //creo scanner per leggere una riga per volta
             Scanner lettore = new Scanner(filecsv);
             //estrarre una riga per volta
