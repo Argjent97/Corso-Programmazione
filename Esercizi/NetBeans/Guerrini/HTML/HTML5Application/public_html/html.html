@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/script.js"></script>
+        <link rel="stylesheet" href="css/style.css"/>
+        <style>
+            *{
+                border-width: 1px;
+                border-color: black;
+                border-style: solid;
+            }
+
+        </style>
+
+
+    </head>
+
+    <body>
+        <header><h1>Testata Gatto</h1>         
+        </header>
+        <div class ="main">
+            <div class="divgallery">
+                <div class ="item-gallery">
+                    <img src="img/cat.jpg"/>
+                </div>
+                <div class ="item-gallery">
+                    <img src="img/certosino.jpg"/>
+                </div>
+                <div class ="item-gallery">
+                    <img src="img/ragdoll.jpg"/>
+                </div>
+
+            </div>
+            <h2 id="titolo" class ="sfondoy"> Vieni in Tour con noi!</h2>
+            <p><b>Lorem ipsum dolor sit amet</b>, consectetur adipiscing elit. Cras tincidunt semper ex.<br/>
+                Morbi ultricies eros sed massa posuere posuere. Nullam in nisi nunc. <br/>
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+        </div>
+        <div id="contatto">
+            <form method="get" id="fcontatti" action="#">
+                <input id="tmail" required name="mail" placeholder="ins. indirizzo mail" /><br/>
+                <input id="tpwd" type="password" name="pwd" placeholder="inserisci password" /><br/>
+                <input id="tnominativo" name="nominativo" value="" placeholder="inserisci nome e cognome" /><br/>
+                <input id="tanno" min="1990" max="2025" type="number" name="anno" placeholder="inserisci l'anno" /><br/>
+                <input id="tanno2" min="1990" max="2025" type="range" name="anno" /><br/>
+                <input id="tdate" type="date" name="data" /><br/>
+               sesso: maschio <input type="radio" name="csex" value="maschio"/>
+               sesso: femmina <input type="radio" name="csex" value="femmina"/><br/>
+               sesso: checkbox <br/> maschio <input type="checkbox" name="sex" value="maschio"/>
+               <br/> femmina <input type="checkbox" name="sex" value="femmina"/><br/>          
+                <textarea id="tcommento" name="commento" placeholder="ins. commento" rows="5" cols="50"></textarea><br/>
+                <select id="spv" name="pv" size="4" >
+                        <option value="TO">Torino</option>
+                        <option value="AL">Alessandria</option>
+                        <option value="AT">Asti</option>
+                        <option value="TO">Torino</option>
+                        <option value="AL">Alessandria</option>
+                        <option value="AT">Asti</option>
+                        <option value="TO">Torino</option>
+                        <option value="AL">Alessandria</option>
+                        <option value="AT">Asti</option>
+                    </select>
+                    
+                <input type="button" id="buttonok" value="OK"/>
+                <input type="submit" id="invia" value="invia"/>
+
+            </form>
+
+        </div>
+
+
+        <div class ="info">
+            <h2> Descrizione Londra </h2>
+            <p><b>Lorem ipsum dolor sit amet</b>, consectetur adipiscing elit. Cras tincidunt semper ex.<br/>
+                Morbi ultricies eros sed massa posuere posuere. Nullam in nisi nunc. <br/>
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+        </div>
+        <div class ="info">
+            <h2> Descrizione Parigi </h2>
+            <p><b>Lorem ipsum dolor sit amet</b>, consectetur adipiscing elit. Cras tincidunt semper ex.<br/>
+                Morbi ultricies eros sed massa posuere posuere. Nullam in nisi nunc. <br/>
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+        </div>
+        <div class ="info">
+            <h2> Descrizione Firenze </h2>
+
+            <p> <img src="img/cat.jpg" alt="immagine di gattino"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt semper ex.<br/>
+                Morbi ultricies eros sed massa posuere posuere. Nullam in nisi nunc. <br/>
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+        </div>
+        <div class= "dati">
+            <table>
+                <tr>
+                    <th>Citt&agrave;</th>
+                    <th colspan="2">Popolazione e clima</th>
+                </tr>
+                <tr>
+                    <td>Londra</td>
+                    <td>22000000</td>
+                    <td>mite</td>
+                <tr>
+                    <td>Parigi</td>
+                    <td>8000000</td>
+                    <td>continentale</td>
+                </tr>
+                <tr>
+                    <td>Firenze</td>
+                    <td>1200000</td>
+                    <td>mediterraneo</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+
+</html>

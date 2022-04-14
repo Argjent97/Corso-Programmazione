@@ -4,13 +4,8 @@
  */
 package it.tss.blogapp.entity;
 
-import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -19,21 +14,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tag")
-public class Tag implements Serializable {
+public class Tag extends BaseEntity {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   private Long id;
-   
-   @Column(nullable = false)
-   private String name;
+    @Column(nullable = false, unique = true)
+    private String name;
 
-    public Long getId() {
-        return id;
+    public Tag() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Tag(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -45,31 +35,8 @@ public class Tag implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Tag other = (Tag) obj;
-        return Objects.equals(this.id, other.id);
-    }
-
-    @Override
     public String toString() {
-        return "Tag{" + "id=" + id + ", name=" + name + '}';
+        return "Tag{" + "name=" + name + '}';
     }
-    
-   
+
 }

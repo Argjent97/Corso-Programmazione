@@ -4,66 +4,65 @@
  */
 package it.tss.blogapp.entity;
 
-import java.io.Serializable;
+import it.tss.blogapp.adapters.UserTypeAdapter;
+import it.tss.blogapp.boundary.PostResource;
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.bind.annotation.JsonbTransient;
+import javax.json.bind.annotation.JsonbTypeAdapter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.ws.rs.core.UriBuilder;
 
 /**
  *
  * @author tss
  */
-
 @Entity
 @Table(name = "post")
-public class Post implements Serializable{
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
+public class Post extends BaseEntity {
+
     @Column(nullable = false)
     private LocalDateTime created = LocalDateTime.now();
-    
+
+    @JsonbTypeAdapter(UserTypeAdapter.class)
     @ManyToOne(optional = false)
     private User author;
-    
+
     @Column(nullable = false)
     private String title;
-    
+
     @Column(nullable = false)
     private String body;
-    
+
+    @JsonbTransient
     @ManyToMany
-    @JoinTable(name = "post_tag" ,
+    @JoinTable(name = "post_tag",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
-        
     )
-    private Set<Tag> tags;
+    private Set<Tag> tags = new TreeSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public JsonObject toJsonSlice() {
+        return Json.createObjectBuilder()
+                .add("id", this.id)
+                .add("title", this.title)
+                .build();
     }
 
     public LocalDateTime getCreated() {
         return created;
     }
 
+    @JsonbTransient
     public void setCreated(LocalDateTime created) {
         this.created = created;
     }
@@ -100,33 +99,15 @@ public class Post implements Serializable{
         this.tags = tags;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 73 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Post other = (Post) obj;
-        return Objects.equals(this.id, other.id);
+    public String getLink() {
+        return UriBuilder.fromResource(PostResource.class)
+                .path(PostResource.class, "find")
+                .build(this.id).toString();
     }
 
     @Override
     public String toString() {
-        return "Post{" + "id=" + id + ", created=" + created + ", author=" + author + ", title=" + title + ", body=" + body + ", tags=" + tags + '}';
+        return "Post{" + "created=" + created + ", author=" + author + ", title=" + title + ", body=" + body + ", tags=" + tags + '}';
     }
-    
-    
-    
+
 }

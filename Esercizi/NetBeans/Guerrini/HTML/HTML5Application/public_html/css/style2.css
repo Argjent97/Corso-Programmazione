@@ -1,0 +1,45 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+* {
+    margin: 1px;
+    border: 0px;
+    padding: 0px;
+    outline: 0px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: #034f84;
+}
+
+.flex-container > div {
+  background-color: #034f84;
+  width: 200px;
+  margin: 5px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  font-family: Arial;
+  font-weight: bolder;
+  color: #f4e1d2;
+}
+
+.flex-container > div:hover {
+  background-color: #92a8d1;
+}
+
+.full{
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.full img{
+    flex: 50%;
+}
+
+.inner{
+    max-width: 1200px;
+}

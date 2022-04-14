@@ -4,46 +4,55 @@
  */
 package it.tss.blogapp.entity;
 
-import java.io.Serializable;
-import java.util.Objects;
+import it.tss.blogapp.boundary.UsersResource;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import javax.ws.rs.core.UriBuilder;
 
 /**
  *
  * @author tss
  */
-
 @Entity
 @Table(name = "user")
-public class User implements Serializable{
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
+public class User extends BaseEntity {
+
+    @JsonbProperty(value = "first_name")
+    @NotBlank
     @Column(name = "first_name", nullable = false)
     private String firstName;
-    
+
+    @JsonbProperty(value = "last_name")
+    @NotBlank
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    
+
+    @NotBlank
+    @Email
     @Column(nullable = false)
     private String email;
-    
+
+    @NotBlank
+    @Size(min = 4)
     @Column(nullable = false)
     private String pwd;
 
-    public Long getId() {
-        return id;
-    }
+    public JsonObject toJsonSlice() {
 
-    public void setId(Long id) {
-        this.id = id;
+        return Json.createObjectBuilder()
+                .add("id", this.id)
+                .add("link", UriBuilder.fromResource(UsersResource.class)
+                        .path(UsersResource.class, "find")
+                        .build(this.id).toString())
+                .build();
     }
 
     public String getFirstName() {
@@ -70,6 +79,7 @@ public class User implements Serializable{
         this.email = email;
     }
 
+    @JsonbTransient
     public String getPwd() {
         return pwd;
     }
@@ -79,31 +89,8 @@ public class User implements Serializable{
     }
 
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        return Objects.equals(this.id, other.id);
-    }
-
-    @Override
     public String toString() {
-        return "User{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", pwd=" + pwd + '}';
+        return "User{" + "firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", pwd=" + pwd + '}';
     }
-    
-    
+
 }
