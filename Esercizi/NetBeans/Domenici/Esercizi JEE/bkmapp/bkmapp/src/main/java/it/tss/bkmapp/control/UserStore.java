@@ -5,6 +5,8 @@
 package it.tss.bkmapp.control;
 
 
+import it.tss.bkmapp.SecurityEncoding;
+import it.tss.bkmapp.boundary.Credential;
 import it.tss.bkmapp.entity.User;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +14,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -59,10 +62,10 @@ public class UserStore {
         return found == null ? Optional.empty() : Optional.of(found);
     }
 
-    /* public User create(User entity) {
+    public User create(User entity) {
         entity.setPwd(SecurityEncoding.shaHash(entity.getPwd()));
         return save(entity);
-    }*/
+    }
 
     public User save(User entity) {
         User saved = em.merge(entity);
@@ -74,7 +77,7 @@ public class UserStore {
         em.remove(em.getReference(User.class, id));
     }
 
-    /* public Optional<User> login(Credential credential) {
+    public Optional<User> login(Credential credential) {
         try {
             return Optional.of(em.createQuery("select e from User e where e.email= :usr and e.pwd= :pwd", User.class)
                     .setParameter("usr", credential.usr)
@@ -84,5 +87,5 @@ public class UserStore {
             return Optional.empty();
         }
     }
-    */
+
 }

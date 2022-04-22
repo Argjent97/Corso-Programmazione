@@ -40,8 +40,9 @@ public class BookmarkStore {
         return found == null ? Optional.empty() : Optional.of(found);
     }
 
+    
     public List<Bookmark> byUser(Long userId) {
-        return em.createQuery("select e from Bookmark e where e.user.id :userId order by e.created DESC", Bookmark.class)
+        return em.createQuery("select e from Bookmark e where e.user.id=:userId order by e.user DESC", Bookmark.class)
                 .setParameter("userId", userId)
                 .getResultList();
     }
@@ -67,11 +68,12 @@ public class BookmarkStore {
         }
     }
 
+
     public void deleteByUser(Long id) {
         byUser(id).stream().map(Bookmark::getId).forEach(this::delete);
     }
 
-    public void delete(Long id) {
+        public void delete(Long id) {
         em.remove(em.getReference(Bookmark.class, id));
     }
 }

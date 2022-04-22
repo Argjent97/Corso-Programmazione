@@ -58,11 +58,12 @@ public class UserResource {
         @APIResponse(responseCode = "200", description = "Nuovo utente creato con successo")
     })
     public User update(@Valid User entity) {
-        User found = store.find(id).orElseThrow(() -> new NotFoundException("user non trovato. id=" + id));
+        store.find(id).orElseThrow(() -> new NotFoundException("user non trovato. id=" + id));
         entity.setId(id);
         return store.save(entity);
     }
 
+    
     @DELETE
     @Operation(description = "Elimina una risorsa Utente tramite l'ID")
     @APIResponses({
@@ -75,6 +76,7 @@ public class UserResource {
         store.delete(found.getId());
     }
 
+    
     @GET
     @Path("bookmarks")
     @Produces(MediaType.APPLICATION_JSON)
@@ -85,7 +87,7 @@ public class UserResource {
     public List<Bookmark> bookmarks() {
         return bookmarkStore.byUser(id);
     }
-
+    
     @POST
     @Path("bookmarks")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -94,7 +96,7 @@ public class UserResource {
     @APIResponses({
         @APIResponse(responseCode = "200", description = "Elenco ritornato con successo")
     })
-    public Response createPost(@Valid Bookmark entity) {
+    public Response createBookmark(@Valid Bookmark entity) {
         Bookmark saved = bookmarkStore.save(entity);
         return Response.status(Response.Status.CREATED)
                 .entity(saved)
