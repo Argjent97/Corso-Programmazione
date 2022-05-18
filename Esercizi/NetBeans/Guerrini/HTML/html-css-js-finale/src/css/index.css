@@ -1,0 +1,10 @@
+#webapp {
+    background-image: url("/src/img/maxresdefault.jpg");
+    min-height: 800px;
+}
+
+#webapp .titolo1 {
+    color: red;
+    margin: 10px;
+    padding: 10px;
+}

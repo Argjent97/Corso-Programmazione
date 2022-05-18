@@ -23,6 +23,7 @@ import javax.ws.rs.DefaultValue;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -121,6 +122,12 @@ public class UsersResource {
                 .entity(saved)
                 .build();
     }
+    
+    /*inseriamo un metodo option poichè con i cors del browser, ad ogni richiesta fatta
+    su questa resource il browser effettua dei controlli che passano sul metodo find
+    e, siccome il jwt token all'inizio è vuoto il metodo di post bkms (per esempio) non
+    funzionerà
+    */
 
     @Path("{id}")
     @RolesAllowed("users")

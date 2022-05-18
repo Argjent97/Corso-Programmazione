@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script>
+            function calcola(){ 
+                let inom= document.querySelector("#nome"); //tiro su l'oggetto intero
+                let txcog= document.querySelector("#cognome").value; //tiro su soltanto la stringa di testo
+                let ris= "ciao " + inom.value + " " + txcog;
+                let objris = document.querySelector("#divris");
+                objris.innerHTML = ris;
+            }
+            
+            function init(){
+                const d= new Date();
+                let data = document.querySelector("#data");
+                data.innerHTML ="sei arrivato oggi alle " + d.toLocaleDateString() + " " + d.toLocaleTimeString();
+            }
+        </script>
+        
+    </head>
+    <body onload="init()">
+        <div>
+            <h2>Esempio1</h2>
+            <h3 id="data"></h3>
+            <input type="text" id="nome" name="nome" placeholder="ins. nome"><br>
+            <input type="text" id="cognome" name="cognome" placeholder="ins. cognome"><br>
+            <input type="button" id="btnris" name="btnris" value="Calcola!" onclick="calcola()"><br>
+            <div id="divris">------</div>
+        </div>
+        
+    </body>
+</html>
