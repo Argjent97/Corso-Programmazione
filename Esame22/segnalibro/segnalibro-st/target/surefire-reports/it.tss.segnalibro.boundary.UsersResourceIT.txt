@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: it.tss.segnalibro.boundary.UsersResourceIT
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.614 s <<< FAILURE! - in it.tss.segnalibro.boundary.UsersResourceIT
+login  Time elapsed: 0.077 s  <<< ERROR!
+javax.ws.rs.WebApplicationException: HTTP 500 Internal Server Error
+	at it.tss.segnalibro.boundary.UsersResourceIT.login(UsersResourceIT.java:68)
+
+delete  Time elapsed: 0.007 s  <<< ERROR!
+java.lang.NullPointerException
+	at it.tss.segnalibro.boundary.UsersResourceIT.delete(UsersResourceIT.java:79)
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCore WEB Solution</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/bookmarks.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/init.js" type="module"></script>
+    <script src="../js/javascript.js" type="module"></script>
+    <script type="module">import {Update,ConfirmDelete, Delete, Create, searchByName,sortTable,Editable} from "../js/javascript.js";
+     window.Update = Update;
+     window.ConfirmDelete = ConfirmDelete;
+     window.Delete = Delete;
+     window.Create = Create;
+     window.searchByName = searchByName;
+     window.sortTable = sortTable;
+     window.Editable = Editable;
+    </script>
+</head>
+
+<body>
+    <nav>
+        <ul class="menu" id="myTopnav">
+            <li class="logo"><a href="index.html">Segnalibri</a></li>
+            <li class="item"><a href="index.html">HOME</a></li>
+            <li class="item off" id="bkm"><a href="segnalibri.html">SEGNALIBRI</a></li>
+            <li class="item button" id="login"><a href="login.html">LOGIN</a></li>
+            <li class="item button off" id="logout"><a href="#">LOGOUT</a></li>
+            <li class="item button secondary" id="signin"><a href="registration.html">SIGN UP</a></li>
+            <li class="item button secondary off" id="loggeduser"><a href="user.html" id="usr-a"></a></li>
+            <li class="item button secondary off" id="creausr"><a href="registration.html">Crea User</a></li>
+            <li class="toggle"><a href="#"><span class="bars"></span></a></li>
+        </ul>
+    </nav>
+    <div id="page">
+        <div id="presentazione" class="container">
+            <h1 class="titolo1" style="text-transform: capitalize;">Gestisci i tuoi Segnalibri</h1>
+        </div>
+
+
+        <div class="wrapper">
+            <div>
+                <form class="form-container">
+                    <h2 class="heading">Crea Segnalibri</h2>
+                    <input type="text" id="descrizione" placeholder="Ins.la descrizione...(max 250)" /> <br>
+                    <input type="text" id="link" placeholder="Inserisci il segnalibro." /> <br>
+                    <div class="form-check" id="divcheck-shared">
+                        <label for="condiviso" class="labelcheck">Condivisibile ?</label>
+                        <input type="checkbox" class="check" id="condiviso" name="condiviso">
+                    </div>
+                    <div class="btn-bkms" style="display: flex;">
+                        <input type="button" id="btnCreaBkms" value="Crea Link" onclick="Create()">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    
+            <input type="text" id="myInput" onkeyup="searchByName()" placeholder="Cerca per link..." title="Type in a link">
+            <div class="table-container">
+                <table class="myTable" id="table">
+                    <thead>
+                        <tr>
+                            <th>DATA CREAZIONE</th>
+                            <th onclick="sortTable(1,this)">DESCRIZIONE<span class="desc">&#10225;</span></th>
+                            <th onclick="sortTable(2,this)">LINK<span class="desc">&#10225;</span></th>
+                            <th onclick="sortTable(3,this)">AUTORE<span class="desc">&#10225;</span></th>
+                            <th>CONDIVISO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTable">
+                    </tbody>
+                </table>
+            </div>
+</body>
+</html>

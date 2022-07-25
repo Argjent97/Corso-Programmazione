@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCore WEB Solution</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/init.js" type="module"></script>
+    <script src="../js/registrazione.js" type="module"></script>
+</head>
+
+<body>
+    <nav>
+        <ul class="menu" id="myTopnav">
+            <li class="logo"><a href="index.html">Segnalibri</a></li>
+            <li class="item"><a href="index.html">Home</a></li>
+            <li class="item off" id="bkm"><a href="segnalibri.html">Segnalibri</a></li>
+            <li class="item button" id="login"><a href="login.html">Login</a></li>
+            <li class="item button off" id="logout"><a href="#">Logout</a></li>
+            <li class="item button secondary" id="signin"><a href="registration.html">Sign up</a></li>
+            <li class="item button secondary off" id="loggeduser"><a href="user.html" id="usr-a"></a></li>
+            <li class="item button secondary off" id="creausr"><a href="registration.html">Crea User</a></li>
+            <li class="toggle"><a href="#"><span class="bars"></span></a></li>
+        </ul>
+    </nav>
+    <div id="page">
+        <div id="presentazione" class="container">
+            <h1 class="titolo1" style="text-transform: capitalize;">Unisciti alla Community di Segnalibri</h1>
+        </div>
+        <div class="wrapper">
+            <div class="form-container">
+                <div class="form">
+                    <!-- Heading -->
+                    <div class="heading">
+                        <h2>Registrati</h2>
+                    </div>
+                    <!-- Form Input -->
+                    <div class="form-wrapper fullname">
+                        <div class="form-item">
+                            <label>Nome</label>
+                            <input type="text" id="rfirst_name" name="first_name" placeholder="inserisci nome" required>
+                        </div>
+                        <div class="form-item">
+                            <label>Cognome</label>
+                            <input type="text" id="rlast_name" name="last_name" placeholder="inserisci cognome" required>
+                        </div>
+                    </div>
+                    <!-- Email Input -->
+                    <div class="form-wrap">
+                        <div class="form-item">
+                            <label>Email</label>
+                            <input type="text" id="rusr" name="email" placeholder="inserisci mail" required>
+                        </div>
+                    </div>
+                    <!-- Password Input -->
+                    <div class="form-wrap">
+                        <div class="form-item">
+                            <label>Password</label>
+                            <input type="password" id="rpwd" name="pwd" placeholder="inserisci password" required>
+                        </div>
+                    </div>
+                    <!-- check box -->
+                    <div class="form-wrap check-box off" id="admin-check">
+                        <div class="form-check" id="form-check">
+                            <label>Admin</label>
+                            <input type="checkbox" id="divcheck">
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <input type="button" value="Conferma Dati" id="btnCrea">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
